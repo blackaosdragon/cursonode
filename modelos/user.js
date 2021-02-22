@@ -10,7 +10,7 @@ const obtenerAvatar = `https://gravatar.com/avatar/?s=200&d=retro`
 const UserSchema = new Schema({
     email: { type: String, unique: true, lowercase: true},
     displayName: String,
-    avater: String,
+    avatar: String,
     password: { type: String, select: false},
     signUpDate: { type: Date, default: Date.now()},
     lastLogin: Date

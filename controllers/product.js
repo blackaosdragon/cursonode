@@ -83,12 +83,6 @@ const saveProduct = (req,res) => {
 const updateProduct = (req,res) => {
     const {productID} = req.params;
     const update = req.body;
-    const {id,nombre,precio,description} = req.body;
-    console.log(update)
-    console.log(nombre)
-    console.log(id)
-    console.log(precio)
-    console.log(description)    
 
     Product.findByIdAndUpdate(productID,update,(err,productoActualizado)=>{
         if (err){
