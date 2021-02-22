@@ -1,20 +1,17 @@
 'use strict'
 
 const mongoose = require('mongoose');
-
 const server = require('./app');
-
-
-
+const config = require('./config.js')
 const puerto = 5003;
 
-mongoose.connect('mongodb://localhost:27017/makristrally', (err,res)=>{
+mongoose.connect(config.db, (err,res)=>{
     if(err){
-        console.log(err)
+        console.log(err);
     } else {
-        console.log('Conexion exitosa a la base de datos')
+        console.log('Conexion exitosa a la base de datos');
     }
-    server.listen(puerto,()=>{
+    server.listen(config.port,()=>{
         console.log(`Escuchando por el puerto ${puerto}`);
     })
 })
