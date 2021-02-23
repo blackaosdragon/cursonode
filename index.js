@@ -7,8 +7,11 @@ const server = require('./app');
 const config = require('./config.js');
 const fechas = require('./services/fecha.js');
 
-let fechaActual = fechas.obtenerFecha();
-console.log(fechaActual);
+//let fechaActual = fechas.obtenerFecha();
+//console.log(fechaActual);
+
+console.log(fechas.obtenerFecha());
+console.log(fechas.obtenerFecha(18,'meses'));
 
 mongoose.connect(config.db, {useNewUrlParser: true,useUnifiedTopology: true})
 

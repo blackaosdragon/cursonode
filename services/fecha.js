@@ -7,14 +7,31 @@ const obtenerFecha = (cantidad,variable) => {
         switch (variable) {
             case 'meses':
                 mes = mes+cantidad;
+                console.log(mes)
                 if(mes>12){
-                    mes = mes - 12;
-                    return (fecha.getDate()+''+mes+''+fecha.getFullYear());
+                    let oneYear = 12;
+                    let increaseYears = Math.floor(cantidad / oneYear);
+                    mes = mes%oneYear;
+                    let year = increaseYears + parseInt(fecha.getFullYear());
+                    return (fecha.getDate()+''+mes+''+year);
                 } else {
                     return (fecha.getDate()+''+mes+''+fecha.getFullYear());
                 }
                 break;
             case 'dias':
+                let dias = parseInt(fecha.getDate() + cantidad);
+                if(mes==2){
+                    if(dias>28){
+                        mes = mes + 1;
+                        dias = dias%28;
+                    } else {
+                        return(dias+''+mes+''+fecha.getFullYear())
+                    }
+                } else if (mes%2==0 && mes!=2){
+
+                } else if (mes%2==1){
+
+                }
                 break;
             case 'years':
                 break;
@@ -23,7 +40,7 @@ const obtenerFecha = (cantidad,variable) => {
         }
 
     } else {
-        console.log(fecha.getDate()+''+mes+''+fecha.getFullYear());
+        //console.log(fecha.getDate()+''+mes+''+fecha.getFullYear());
         return (fecha.getDate()+''+mes+''+fecha.getFullYear());
     }
     
