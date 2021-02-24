@@ -11,7 +11,7 @@ const fechas = require('./services/fecha.js');
 //console.log(fechaActual);
 
 console.log(fechas.obtenerFecha());
-console.log(fechas.obtenerFecha(18,'meses'));
+console.log(fechas.obtenerFecha(43,'dias'));
 
 mongoose.connect(config.db, {useNewUrlParser: true,useUnifiedTopology: true})
 
