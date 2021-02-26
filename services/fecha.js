@@ -21,50 +21,72 @@ const obtenerFecha = (cantidad,variable) => {
             case 'dias':
                 let calculando_dias = 1;
                 let dias = parseInt(fecha.getDate() + cantidad);
-                console.log("dias en total: ",dias)
+                //console.log("dias en total: ",dias)
                 let years = parseInt(fecha.getFullYear());
                 while(calculando_dias){
                     if(mes==2){
-                        if(dias>28){
-                            let dias_faltantes = (fecha.getDate()) - 28;
+                        //let dias_faltantes = 28 - fecha.getDate();
+                        //console.log("dias para que acabe febrero: ",dias_faltantes)
+                        if(dias>28 && (fecha.getMonth()+1)!=mes){
                             mes = mes + 1;
-                            let meses = dias / 28
-                            dias = dias % 28 //dias de febrero
-                            console.log("Dias sobrados: "+dias+" meses incrementados: "+meses);
+                            let dias_faltantes = (fecha.getDate()) - 28;
+                            dias = dias + dias_faltantes
+                            //let meses = dias / 28
+                            //dias = dias % 28 //dias de febrero
+                            //console.log("Dias sobrados: "+dias+" mes...: "+mes);
+                        } else if(dias>28 && (fecha.getMonth()+1)==mes){
+                            dias = dias - 28;
+                            mes = mes + 1;
                         } else {
                             calculando_dias = 0;
-                            console.log("En febrero: ",dias)
+                            //console.log("En febrero: ",dias);
                             return(dias+''+mes+''+years)
                         }
                     }
                     if(mes%2 == 0){
-                        if(dias>30){
+                        if(dias>30 && fecha.getMonth()+1 == mes){
+                            let dias_faltantes = parseInt(fecha.getDate() - 30)
                             mes = mes + 1;
-                            dias = dias % 30; //dias de los meses pares
+                            dias = dias + dias_faltantes//dias = dias % 30; //dias de los meses pares
+                            //console.log("Dias sobrados: "+dias+" mes: "+mes);
 
-                        } else {
+                        } else if(dias>30 && (fecha.getMonth()+1)!=mes){
+                            dias = dias - 30;
+                            mes = mes + 1;
+                            //console.log("Dias sobrados: "+dias+" mes: "+mes);
+                        }
+                        else {
                             calculando_dias = 0;
-                            console.log("En mes par: ",dias)
+                            //console.log("En mes par: ",dias)
                             return(dias+''+mes+''+years)
                         }
                     }
                     if( mes % 2 == 1){
-                        if(dias>31){
+                        if(dias>31 && (fecha.getMonth()+1) == mes){
+                            let dias_faltantes = parseInt(fecha.getDate() - 31);
+                            dias = dias + dias_faltantes;
                             mes = mes + 1;
-                            dias = dias % 31; //dias de los meses impares
+                            //console.log("Dias sobrados: "+dias+" mes: "+mes);
+                            //dias = dias % 31; //dias de los meses impares
+                        } else if (dias>31 && (fecha.getMonth()+1)!=mes){
+                            dias = dias - 31;
+                            mes = mes + 1; 
+                            dias>31
                         } else {
                             calculando_dias = 0;
-                            console.log("En mes impar: ",dias)
+                            //console.log("En mes impar: ",dias);
                             return(dias+''+mes+''+years)
                         }
                     }
                     if(mes>13){
                         years + 1;
-                        mes = mes % 12
+                        mes = mes - 12;
                     }
                 }
                 break;
-            case 'years':
+            case 'años':
+                let year = fecha.getFullYear() + cantidad;
+                return(fecha.getDate()+''+mes+''+year)
                 break;
             default:
                 break;
