@@ -1,6 +1,7 @@
 'use strict'
 const mongoose = require('mongoose');
 const Product = require("../modelos/modelo.js");
+const Users = require('../modelos/user.js');
 const ok = 200;
 const failed = 500;
 const unknow = 404;
@@ -28,6 +29,26 @@ const getProduct = (req,res) => {
     })
 }
 
+const getUsers = (req,res) => {
+    Users.find({}, (err,usuarios) => {
+        if(err){
+            return res.status(failed).send({
+                message: "Error del servidor intente de nuevo",
+                ok: 0
+            })
+        } else if(!usuarios){
+            return res.status(unknow).send({
+                message: "No se han encontrado usuarios",
+                ok: 0
+            })
+        } else {
+            return res.status(ok).send({
+                usuarios: usuarios,
+                ok: 1
+            })
+        }
+    })
+}
 
 function getProducts(req,res) {
     Product.find({}, (err,articulo) => {
@@ -134,6 +155,7 @@ module.exports = {
     getProducts,
     updateProduct,
     deleteProduct,
-    saveProduct
+    saveProduct,
+    getUsers
     
 }

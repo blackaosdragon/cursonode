@@ -17,7 +17,7 @@ mongoose.connect(config.db, {useNewUrlParser: true,useUnifiedTopology: true})
 
 const db = mongoose.connection;
 
-db.on('error',(err)=>console.log('Error al iniciar la conexcion a la base de datos: ',err));
+db.on('error',(err)=>console.log('Error al iniciar la conexion a la base de datos: ',err));
 db.once('open', () => {
     console.log('Conexion exitosa a la base de datos')
     server.listen(config.port,()=>{
