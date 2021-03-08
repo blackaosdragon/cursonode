@@ -19,7 +19,8 @@ const singUp = (req,res) => {
     const user = new User({
         email: email,
         displayName: name,
-        password: password
+        password: password,
+        token: token
     })
     /*
     console.log(user);

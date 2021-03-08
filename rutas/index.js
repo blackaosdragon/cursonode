@@ -12,7 +12,7 @@ const useCtrl = require("../controllers/user");
 
 const api = express.Router();
 
-api.get(`/product`,auth, controllers.getProducts);
+api.get(`/product`, controllers.getProducts);
 api.get(`/product/:productID`, controllers.getProduct);
 api.post('/product', controllers.saveProduct);
 api.put(`/product/:productID`, controllers.updateProduct)
